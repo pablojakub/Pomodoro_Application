@@ -1,0 +1,19 @@
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\bin\Debug\Pomodoro App.exe.config
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\bin\Debug\Pomodoro App.exe
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\bin\Debug\Pomodoro App.pdb
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Pomodoro App.csproj.AssemblyReference.cache
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Pomodoro App.csproj.SuggestedBindingRedirects.cache
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Pomodoro_App.Form1.resources
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Pomodoro_App.Properties.Resources.resources
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Pomodoro App.csproj.GenerateResource.cache
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Pomodoro App.csproj.CoreCompileInputs.cache
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Pomodoro App.exe
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Pomodoro App.pdb
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Interop.MediaPlayer.dll
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Interop.WMPLib.dll
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Pomodoro App.csproj.ResolveComReference.cache
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\bin\Debug\Microsoft.Toolkit.Uwp.Notifications.dll
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\bin\Debug\System.ValueTuple.dll
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\bin\Debug\Microsoft.Toolkit.Uwp.Notifications.pdb
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Pomodoro App.csproj.CopyComplete
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\Pomodoro App\obj\Debug\Pomodoro_App.Form2.resources

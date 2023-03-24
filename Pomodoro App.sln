@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodoro App", "Pomodoro App\Pomodoro App.csproj", "{B7E55C31-E47D-4033-95F0-FDD966468084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "runner", "runner\runner.csproj", "{8450EABB-B185-443B-8485-3CB43DC25A50}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7E55C31-E47D-4033-95F0-FDD966468084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E55C31-E47D-4033-95F0-FDD966468084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E55C31-E47D-4033-95F0-FDD966468084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E55C31-E47D-4033-95F0-FDD966468084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8450EABB-B185-443B-8485-3CB43DC25A50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8450EABB-B185-443B-8485-3CB43DC25A50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8450EABB-B185-443B-8485-3CB43DC25A50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8450EABB-B185-443B-8485-3CB43DC25A50}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A590E54-5012-4B4E-87AB-C7B0E98AB501}
+	EndGlobalSection
+EndGlobal

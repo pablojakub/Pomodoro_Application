@@ -1,0 +1,8 @@
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\runner\bin\Debug\runner.exe.config
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\runner\bin\Debug\runner.exe
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\runner\bin\Debug\runner.pdb
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\runner\obj\Debug\runner.csproj.AssemblyReference.cache
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\runner\obj\Debug\runner.csproj.SuggestedBindingRedirects.cache
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\runner\obj\Debug\runner.csproj.CoreCompileInputs.cache
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\runner\obj\Debug\runner.exe
+C:\Users\jakubowskip.GBCC\Downloads\Projekty\C#\Pomodoro App\runner\obj\Debug\runner.pdb
