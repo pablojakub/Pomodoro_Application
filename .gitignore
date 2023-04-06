@@ -2,3 +2,7 @@
 *.vsidx
 *.locked
 /Pomodoro App/bin/Debug/music
+/Pomodoro App/bin/Debug/quotes.xlsx
+/Pomodoro App/bin/Debug/quotes1.xlsx
+/Pomodoro App/bin/Debug/quotes2.xlsx
+/Pomodoro App/bin/Debug/quotes3.xlsx
