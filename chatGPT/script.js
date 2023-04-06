@@ -13,6 +13,8 @@ const userInterface = readline.createInterface({
     output: process.stdou
 });
 
+console.log(process.env.API_KEY);
+
 console.log("Start chat with GPT:")
 userInterface.prompt();
 userInterface.on("line", async input => {
@@ -21,6 +23,7 @@ userInterface.on("line", async input => {
         messages: [{ role: "user", content: input}]
     })
     console.log(res.data.choices[0].message.content);
+    console.log()
     userInterface.prompt();
 });
 

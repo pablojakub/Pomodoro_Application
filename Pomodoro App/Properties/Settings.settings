@@ -1,7 +1,24 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Pomodoro_App.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="clientId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">411e08dd-f687-436d-ab7c-82880a9bdefe</Value>
+    </Setting>
+    <Setting Name="redirectUri" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://login.microsoftonline.com/common/oauth2/nativeclient</Value>
+    </Setting>
+    <Setting Name="ATLASSIAN_USERNAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pawel.jakubowski@all-for-one.com</Value>
+    </Setting>
+    <Setting Name="ATLASSIAN_API_KEY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ATATT3xFfGF0bw6mmPZwwKhmWUztWssVPDGwPeN9YqXMHGft62X2Twmdcxc55i15COqPHrqpaSGsyrneogpNMkTw-Wex7iLSsUfZpTVPBiA-gpAzHLkMkuoOvOPLaL9JLi44tTRb1foqQD6vrh655fignD7zgXah7AMNFFRkqDNx0xQ8XXYu8Q8=F7703639</Value>
+    </Setting>
+    <Setting Name="DOMAIN" Type="System.String" Scope="User">
+      <Value Profile="(Default)">all41</Value>
+    </Setting>
+    <Setting Name="ATLASSIAN_ACCOUNTID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">605c3fc78efc9b0070580f35</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

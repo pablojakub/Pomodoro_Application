@@ -1,22 +1,26 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Windows.ApplicationModel.Activation;
 using WMPLib;
 using System.Diagnostics;
+using Microsoft.Identity.Client;
+using Microsoft.Graph;
+using Microsoft.Kiota.Abstractions.Authentication;
+using Microsoft.Graph.Models;
+using System.Windows.Threading;
+using static Pomodoro_App.JiraHelper;
+using Atlassian.Jira;
+using Windows.UI.Xaml.Controls;
+using static System.Net.Mime.MediaTypeNames;
+using System.Drawing;
+using System.Drawing.Text;
 
 namespace Pomodoro_App
 {
@@ -30,18 +34,23 @@ namespace Pomodoro_App
         WindowsMediaPlayer musicPlayer = new WindowsMediaPlayer();
         string actuallySongPlayed;
         public List<string> blockedSites = new List<string>();
+        private List<JiraIssue> issues = new List<JiraIssue>();
+        private JiraIssue selectedIssue = null;
 
         [DllImport("user32")]
         public static extern void LockWorkStation();
 
-        public Form1()
+        public Form1(Quote quote)
         {
             InitializeComponent();
             DateTime now = DateTime.Now.Date.AddMinutes(15).AddHours(15);
             dateTimePicker1.Value = now;
             FormClosing += new FormClosingEventHandler(Form1_FormClosing);
             Resize += new EventHandler(Form1_Resize);
-            this.counter.Leave += Counter_Leave; ;
+            this.counter.Leave += Counter_Leave;
+            this.author.Text = quote.Author;
+            this.quote.Text = quote.QuoteText;
+            this.quote.SelectionAlignment = HorizontalAlignment.Center;
         }
 
         private void Counter_Leave(object sender, EventArgs e)
@@ -122,7 +131,7 @@ namespace Pomodoro_App
             
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private async void btnStart_Click(object sender, EventArgs e)
         {
             timer1.Enabled = true;
             seconds = Convert.ToInt32(counter.Text) * 60;
@@ -131,6 +140,24 @@ namespace Pomodoro_App
             string endTimeStr = endTime.ToString();
             endtime3.Text = endTimeStr;
             timer1.Start();
+
+            var requestBody = new Microsoft.Graph.Users.Item.Presence.SetPresence.SetPresencePostRequestBody
+            {
+                SessionId = "22553876-f5ab-4529-bffb-cfe50aa89f87",
+                Availability = "Busy",
+                Activity = "Busy",
+                ExpirationDuration = new TimeSpan(0,0,seconds),
+            };
+
+            if (jira_checkbox.Checked == true)
+            {
+                jiraWorklogRes.Visible = false;
+                string result = await AddWorklogToJira(selectedIssue, seconds);
+                if (result != string.Empty)
+                {
+                    jiraWorklogRes.Visible = true;
+                }
+            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -357,7 +384,7 @@ namespace Pomodoro_App
             }
             try
             {
-                Process.Start(proc);
+                System.Diagnostics.Process.Start(proc);
             }
             catch
             {
@@ -368,16 +395,239 @@ namespace Pomodoro_App
 
         private void chatGPT_btn_Click(object sender, EventArgs e)
         {
-            Process process = new Process();
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
             ProcessStartInfo procStartInfo = new ProcessStartInfo()
             {
                 WorkingDirectory = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "chatGPT"),
                 WindowStyle = ProcessWindowStyle.Normal,
                 FileName = "cmd.exe",
-                Arguments = "/C npm start",
+                Arguments = "/C node script.js",
             };
             process.StartInfo = procStartInfo;
             process.Start();
         }
+
+        #region JIRA
+        private async void jiraBtn_Click(object sender, EventArgs e)
+        {
+            jiraIssues.Items.Clear();
+            jiraNegativeResult.Visible = false;
+            jiraPositiveResult.Visible = false;
+
+            var issues = await GetSprintIssues(this.jiraProjects.Text);
+            if (issues != null)
+            {
+                this.issues = issues;
+                jiraPositiveResult.Visible = true;
+                jiraNegativeResult.Visible = false;
+                foreach (var issue in issues)
+                {
+                   // add stories
+                   if (issue.Fields.Status.Id == (int)Statuses.OPEN 
+                        || issue.Fields.Status.Id == (int)Statuses.IN_PROGRESS 
+                        || issue.Fields.Status.Id == (int)Statuses.CHANGE_AFTER_TEST
+                        || issue.Fields.Status.Id == (int)Statuses.READY_FOR_CR
+                        || issue.Fields.Status.Id == (int)Statuses.BOT_IN_PROGRESS
+                        || issue.Fields.Status.Id == (int)Statuses.BOT_OPEN
+                        || issue.Fields.Status.Id == (int)Statuses.BOT_CHANGE_AFTER_TEST)
+                    {
+                        jiraIssues.Items.Add($"{issue.Key}:{issue.Fields.Summary}");
+                    }
+
+                   // add subtasks
+                   if (issue.Fields.Subtasks != null) 
+                    {
+                        foreach (var subtask in issue.Fields.Subtasks)
+                        {
+                            if (subtask.Fields.Status.Id == (int)Statuses.OPEN
+                            || subtask.Fields.Status.Id == (int)Statuses.IN_PROGRESS
+                            || subtask.Fields.Status.Id == (int)Statuses.CHANGE_AFTER_TEST
+                            || subtask.Fields.Status.Id == (int)Statuses.READY_FOR_CR
+                            || subtask.Fields.Status.Id == (int)Statuses.BOT_IN_PROGRESS
+                            || subtask.Fields.Status.Id == (int)Statuses.BOT_OPEN
+                            || subtask.Fields.Status.Id == (int)Statuses.BOT_CHANGE_AFTER_TEST)
+                            {
+                                jiraIssues.Items.Add($"SUBTASK: {subtask.Key}:{subtask.Fields.Summary}");
+                            }
+                        }
+                    }
+                }
+            } else
+            {
+                jiraPositiveResult.Visible = false;
+                jiraNegativeResult.Visible = true;
+            }
+        }
+
+        private void jiraIssues_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] issueKey = this.jiraIssues.Text.Split(':');
+            if (jiraIssues.Text.Contains("SUBTASK"))
+            {
+                string key = issueKey[1].Trim();
+                if (issues.Find(l => l.Key == key) == null)
+                {
+                    foreach(var issue in issues)
+                    {
+                        if (issue.Fields.Subtasks == null) continue;
+                        var subtask = issue.Fields.Subtasks.Find(l => l.Key == key);
+                        if (subtask == null) continue;
+                        selectedIssue = subtask;
+                    }
+                } 
+            } 
+            else
+            {
+                string key = issueKey[0].Trim();
+                selectedIssue = issues.First(l => l.Key == key);
+            }
+        }
+
+        private void issueLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (selectedIssue == null) return;
+            System.Diagnostics.Process.Start($"https://all41.atlassian.net/browse/{selectedIssue.Key}");
+        }
+
+        private async void addWorklog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (selectedIssue == null) return;
+            worklogResult.Visible = false;
+            string result = await AddWorklogToJira(selectedIssue, 1800);
+            if (result != string.Empty)
+            {
+                worklogResult.Visible = true;
+            }
+        }
+
+        private async void sendToPR_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (selectedIssue == null) return;
+            sendToPRStatus.Visible = false;
+            string result = await SendToPRStatus(selectedIssue);
+            if (result != string.Empty)
+            {
+                sendToPRStatus.Visible = true;
+            }
+        }
+
+        private void jiraWorklogRes_Click(object sender, EventArgs e)
+        {
+            jiraWorklogRes.Visible = false;
+        }
+
+    #endregion JIRA
+
+
+        #region azureAuth
+
+        private string[] scopes = new string[] { "user.read", "calendars.read", "presence.ReadWrite" };
+        // Below are the clientId (Application Id) of your app registration and the tenant information.
+        // You have to replace:
+        // - the content of ClientID with the Application Id for your app registration
+        private const string ClientId = "411e08dd-f687-436d-ab7c-82880a9bdefe";
+
+        private const string Tenant = "common"; // Alternatively "[Enter your tenant, as obtained from the Azure portal, e.g. kko365.onmicrosoft.com]"
+        private const string Authority = "https://login.microsoftonline.com/" + Tenant;
+
+        // The MSAL Public client app
+        private static IPublicClientApplication PublicClientApp;
+
+        private static string MSGraphURL = "https://graph.microsoft.com/v1.0/";
+        private static AuthenticationResult authResult;
+
+        private GraphServiceClient graphClient;
+
+        private async void getToken_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                graphClient = await SignInAndInitializeGraphServiceClient(scopes);
+                User graphUser = await graphClient.Me.GetAsync();
+                greet.Text = $"Hello {graphUser.DisplayName}!";
+
+
+
+                //var result = await graphClient.Me.Calendar.Events.GetAsync((requestConfiguration) =>
+                //{
+                //    requestConfiguration.QueryParameters.Filter = $"startdatetime={DateTime.Now}";
+                //});
+                logOut_btn.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                greet.Text = ex.Message;
+            }
+        }
+
+        private static async Task<string> SignInUserAndGetTokenUsingMSAL(string[] scopes)
+        {
+            // Initialize the MSAL library by building a public client application
+            PublicClientApp = PublicClientApplicationBuilder.Create(ClientId)
+                .WithAuthority(Authority)
+                .WithRedirectUri("https://login.microsoftonline.com/common/oauth2/nativeclient")
+                 .WithLogging((level, message, containsPii) =>
+                 {
+                     Debug.WriteLine($"MSAL: {level} {message} ");
+                 }, LogLevel.Warning, enablePiiLogging: false, enableDefaultPlatformLogging: true)
+                .Build();
+
+            // It's good practice to not do work on the UI thread, so use ConfigureAwait(false) whenever possible.
+            IEnumerable<IAccount> accounts = await PublicClientApp.GetAccountsAsync().ConfigureAwait(false);
+            IAccount firstAccount = accounts.FirstOrDefault();
+
+            try
+            {
+                authResult = await PublicClientApp.AcquireTokenSilent(scopes, firstAccount)
+                                                  .ExecuteAsync();
+            }
+            catch (MsalUiRequiredException ex)
+            {
+                // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
+                Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
+
+                authResult = await PublicClientApp.AcquireTokenInteractive(scopes)
+                                                  .ExecuteAsync()
+                                                  .ConfigureAwait(false);
+
+            }
+            return authResult.AccessToken;
+        }
+
+        private async static Task<GraphServiceClient> SignInAndInitializeGraphServiceClient(string[] scopes)
+        {
+            var tokenProvider = new TokenProvider(SignInUserAndGetTokenUsingMSAL, scopes);
+            var authProvider = new BaseBearerTokenAuthenticationProvider(tokenProvider);
+            var graphClient = new GraphServiceClient(authProvider, MSGraphURL);
+
+            return await Task.FromResult(graphClient);
+        }
+
+        private async void logOut_btn_Click(object sender, EventArgs e)
+        {
+            IEnumerable<IAccount> accounts = await PublicClientApp.GetAccountsAsync().ConfigureAwait(false);
+            IAccount firstAccount = accounts.FirstOrDefault();
+
+            try
+            {
+                await PublicClientApp.RemoveAsync(firstAccount).ConfigureAwait(false);
+                greet.Text = "";
+                logOut_btn.Visible = false;
+            }
+            catch (MsalException ex)
+            {
+                errorLabel.Text = $"Error signing out user: {ex.Message}";
+            }
+        }
     }
+    #endregion
+
+    #region quote
+
+    public class Quote
+    {
+        public string QuoteText { get; set; }
+        public string Author { get; set; }
     }
+    #endregion Quote
+}
