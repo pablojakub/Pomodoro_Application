@@ -1,6 +1,9 @@
 
 *.vsidx
 *.locked
+.vs
+.vs/Pomodoro App
+/runner
 /Pomodoro App/bin/
 /Pomodoro App/obj/
 Pomodoro App/quotes.xlsx
