@@ -27,7 +27,7 @@ namespace Pomodoro_App
         {
             List<Quote> result = new List<Quote>();
 
-            string filePath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "quotes.xlsx");
+            string filePath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "quotes2.xlsx");
             Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
             Workbook wb;
             Worksheet ws;
@@ -51,7 +51,8 @@ namespace Pomodoro_App
                 result[index].Author = author.ToString();
                 index++;
             }
-            wb.Close();
+            wb.Close(0);
+            excel.Quit();
             return result;
         }
     }
