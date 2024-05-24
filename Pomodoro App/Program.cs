@@ -51,6 +51,7 @@ namespace Pomodoro_App
                 result[index].Author = author.ToString();
                 index++;
             }
+            wb.Close();
             return result;
         }
     }
