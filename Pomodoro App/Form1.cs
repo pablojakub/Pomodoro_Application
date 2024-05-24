@@ -112,7 +112,7 @@ namespace Pomodoro_App
                 if (seconds == 10)
                 {
                     WindowsMediaPlayer myplayer = new WindowsMediaPlayer();
-                    myplayer.URL = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "clock_sound.mp3");
+                    myplayer.URL = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "clock_sound.mp3");
                     myplayer.controls.play();
                 }
                 if (seconds < 0)
@@ -120,7 +120,7 @@ namespace Pomodoro_App
                     timer1.Stop();
                     counter.Enabled = true;
                     WindowsMediaPlayer myplayer = new WindowsMediaPlayer();
-                    myplayer.URL = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "ping_sound.mp3");
+                    myplayer.URL = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "ping_sound.mp3");
                     myplayer.controls.play();
                     Thread.Sleep(200);
                     musicPlayer.controls.pause();
@@ -197,14 +197,14 @@ namespace Pomodoro_App
                .AddButton(new ToastButton("Odłóż o 5 minut", String.Empty)
                 .AddArgument("POSTPONED")
                 )
-               .AddInlineImage(new Uri(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "freedom.png")))
+               .AddInlineImage(new Uri(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "freedom.png")))
                .AddText("KONIEC PRACY!")
                .AddText("Pora na podsumowanie i planowanie kolejnego dnia")
                .Show();
 
             Thread.Sleep(1000);
             WindowsMediaPlayer myplayer = new WindowsMediaPlayer();
-            myplayer.URL = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "happy.mp3");
+            myplayer.URL = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "heppy.mp3");
             myplayer.controls.play();
 
             if (_requestStop == false)
