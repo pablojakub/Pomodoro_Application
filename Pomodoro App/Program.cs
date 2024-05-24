@@ -20,8 +20,7 @@ namespace Pomodoro_App
             int randomNumber = random.Next(0, 13);
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-            System.Windows.Forms.Application.Run(new Form1(new Quote() { Author = "Milosz Brzezinski", QuoteText = "Pracowita mroweczka osiagnie wiecej niz spazmatyczny Hercules" }));
-
+            System.Windows.Forms.Application.Run(new Form1(quotes[randomNumber]));
         }
 
         private static List<Quote> ReadExcel()
@@ -40,28 +39,18 @@ namespace Pomodoro_App
 
             foreach (var quote in quotes.Value)
             {
-                if (quote is null)
-                {
-                    continue;
-                }
                 result.Add(new Quote()
                 {
                     QuoteText = quote.ToString(),
                 });
-
             }
 
             int index = 0;
             foreach (var author in authors.Value)
             {
-                if (author is null)
-                {
-                    continue;
-                }
                 result[index].Author = author.ToString();
                 index++;
             }
-            wb.Close();
             return result;
         }
     }
