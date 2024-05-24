@@ -3,5 +3,5 @@
 *.locked
 /Pomodoro App/bin/
 /Pomodoro App/obj/
-/Pomodoro App/v17/
-/Pomodoro App/properties/
+Pomodoro App/quotes.xlsx
+Pomodoro App/~$quotes.xlsx
