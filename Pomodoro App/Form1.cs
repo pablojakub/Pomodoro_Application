@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Controls;
 using static System.Net.Mime.MediaTypeNames;
 using System.Drawing;
 using System.Drawing.Text;
+using Pomodoro_App.Models;
 
 namespace Pomodoro_App
 {
@@ -36,11 +37,12 @@ namespace Pomodoro_App
         public List<string> blockedSites = new List<string>();
         private List<JiraIssue> issues = new List<JiraIssue>();
         private JiraIssue selectedIssue = null;
+        private Statistic _statistic;
 
         [DllImport("user32")]
         public static extern void LockWorkStation();
 
-        public Form1(Quote quote)
+        public Form1(Quote quote, Statistic statistic)
         {
             InitializeComponent();
             DateTime now = DateTime.Now.Date.AddMinutes(15).AddHours(15);
@@ -51,6 +53,8 @@ namespace Pomodoro_App
             this.author.Text = quote.Author;
             this.quote.Text = quote.QuoteText;
             this.quote.SelectionAlignment = HorizontalAlignment.Center;
+            _statistic = statistic;
+            this.statistic.Text = statistic.GetTodayStatistics();
         }
 
         private void Counter_Leave(object sender, EventArgs e)
@@ -139,6 +143,8 @@ namespace Pomodoro_App
             DateTime endTime = DateTime.Now.AddMinutes(Convert.ToInt32(counter.Text));
             string endTimeStr = endTime.ToString();
             endtime3.Text = endTimeStr;
+            _statistic.WriteStatistics(seconds);
+            this.statistic.Text = _statistic.GetTodayStatistics();
             timer1.Start();
 
             var requestBody = new Microsoft.Graph.Users.Item.Presence.SetPresence.SetPresencePostRequestBody
@@ -191,7 +197,7 @@ namespace Pomodoro_App
         private void ShowNotification(object sender, EventArgs e)
         {
             new ToastContentBuilder()
-               .AddButton(new ToastButton("Idź do Nozbe", String.Empty)
+               .AddButton(new ToastButton("Idź do kalendarza", String.Empty)
                 .AddArgument("ACTION_HAPPENED")
                 )
                .AddButton(new ToastButton("Odłóż o 5 minut", String.Empty)
@@ -223,7 +229,7 @@ namespace Pomodoro_App
                 _requestStop = true;
                 _timer.Stop();
                 dateTimePicker1.Enabled = true;
-                System.Diagnostics.Process.Start("https://app.nozbe.com/#na");
+                System.Diagnostics.Process.Start("https://calendar.google.com/calendar/u/0/r");
             }
 
             if (e.Argument == "POSTPONED")
@@ -552,7 +558,7 @@ namespace Pomodoro_App
                 //{
                 //    requestConfiguration.QueryParameters.Filter = $"startdatetime={DateTime.Now}";
                 //});
-                logOut_btn.Visible = true;
+                //logOut_btn.Visible = true;
             }
             catch (Exception ex)
             {
@@ -602,32 +608,6 @@ namespace Pomodoro_App
 
             return await Task.FromResult(graphClient);
         }
-
-        private async void logOut_btn_Click(object sender, EventArgs e)
-        {
-            IEnumerable<IAccount> accounts = await PublicClientApp.GetAccountsAsync().ConfigureAwait(false);
-            IAccount firstAccount = accounts.FirstOrDefault();
-
-            try
-            {
-                await PublicClientApp.RemoveAsync(firstAccount).ConfigureAwait(false);
-                greet.Text = "";
-                logOut_btn.Visible = false;
-            }
-            catch (MsalException ex)
-            {
-                errorLabel.Text = $"Error signing out user: {ex.Message}";
-            }
-        }
     }
     #endregion
-
-    #region quote
-
-    public class Quote
-    {
-        public string QuoteText { get; set; }
-        public string Author { get; set; }
-    }
-    #endregion Quote
 }

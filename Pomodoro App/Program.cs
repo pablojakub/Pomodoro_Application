@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json;
+using Pomodoro_App.Models;
 
 namespace Pomodoro_App
 {
@@ -16,11 +19,13 @@ namespace Pomodoro_App
         static void Main()
         {
             var quotes = ReadExcel();
+            Statistic statistic = new Statistic();
+            statistic.ReadStatistic();
             Random random = new Random();
             int randomNumber = random.Next(0, 13);
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-            System.Windows.Forms.Application.Run(new Form1(quotes[randomNumber]));
+            System.Windows.Forms.Application.Run(new Form1(quotes[randomNumber], statistic));
         }
 
         private static List<Quote> ReadExcel()
