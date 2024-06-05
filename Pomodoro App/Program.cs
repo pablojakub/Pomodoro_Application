@@ -25,7 +25,7 @@ namespace Pomodoro_App
             int randomNumber = random.Next(0, 13);
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-            System.Windows.Forms.Application.Run(new Form1(quotes[randomNumber], statistic));
+            System.Windows.Forms.Application.Run(new Form1(quotes[randomNumber], statistic, quotes));
         }
 
         private static List<Quote> ReadExcel()

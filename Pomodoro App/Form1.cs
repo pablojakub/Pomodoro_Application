@@ -38,11 +38,12 @@ namespace Pomodoro_App
         private List<JiraIssue> issues = new List<JiraIssue>();
         private JiraIssue selectedIssue = null;
         private Statistic _statistic;
+        private List<Quote> _quotes = new List<Quote>();
 
         [DllImport("user32")]
         public static extern void LockWorkStation();
 
-        public Form1(Quote quote, Statistic statistic)
+        public Form1(Quote quote, Statistic statistic, List<Quote> quotes)
         {
             InitializeComponent();
             DateTime now = DateTime.Now.Date.AddMinutes(15).AddHours(15);
@@ -55,6 +56,7 @@ namespace Pomodoro_App
             this.quote.SelectionAlignment = HorizontalAlignment.Center;
             _statistic = statistic;
             this.statistic.Text = statistic.GetTodayStatistics();
+            _quotes = quotes;
         }
 
         private void Counter_Leave(object sender, EventArgs e)
@@ -116,7 +118,7 @@ namespace Pomodoro_App
                 if (seconds == 10)
                 {
                     WindowsMediaPlayer myplayer = new WindowsMediaPlayer();
-                    myplayer.URL = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "clock_sound.mp3");
+                    myplayer.URL = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "clock_sound.mp3");
                     myplayer.controls.play();
                 }
                 if (seconds < 0)
@@ -124,7 +126,7 @@ namespace Pomodoro_App
                     timer1.Stop();
                     counter.Enabled = true;
                     WindowsMediaPlayer myplayer = new WindowsMediaPlayer();
-                    myplayer.URL = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "ping_sound.mp3");
+                    myplayer.URL = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "ping_sound.mp3");
                     myplayer.controls.play();
                     Thread.Sleep(200);
                     musicPlayer.controls.pause();
@@ -203,14 +205,14 @@ namespace Pomodoro_App
                .AddButton(new ToastButton("Odłóż o 5 minut", String.Empty)
                 .AddArgument("POSTPONED")
                 )
-               .AddInlineImage(new Uri(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "freedom.png")))
+               .AddInlineImage(new Uri(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "freedom.png")))
                .AddText("KONIEC PRACY!")
                .AddText("Pora na podsumowanie i planowanie kolejnego dnia")
                .Show();
 
             Thread.Sleep(1000);
             WindowsMediaPlayer myplayer = new WindowsMediaPlayer();
-            myplayer.URL = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "happy.mp3");
+            myplayer.URL = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "happy.mp3");
             myplayer.controls.play();
 
             if (_requestStop == false)
@@ -272,27 +274,21 @@ namespace Pomodoro_App
             if (musicSelect.Text == "" || musicSelect.Text == actuallySongPlayed) return;
 
             string musicToPlay = getTrackTitle(musicSelect.Text);
-
-            musicPlayer.URL = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "music", musicToPlay);
+            musicPlayer.URL = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "music", musicToPlay);
             musicPlayer.controls.play();
             actuallySongPlayed = musicSelect.Text;
         }
 
         private string getTrackTitle(string musicSelect)
         {
-            Random random = new Random();
-            int randomNumber = random.Next(0, 10);
-
             switch(musicSelect)
             {
-                case "Jazz":
-                    return randomNumber > 5 ? "jazz.mp3" : "jazz1.mp3";
-                case "Lo-Fi":
-                    return randomNumber > 5 ? "lofi.mp3" : "lofi1.mp3";
-                case "Chill":
-                    return randomNumber > 5 ? "chill.mp3" : "chill1.mp3";
+                case "Forest":
+                    return "forest.mp3";
+                case "Ocean":
+                    return "ocean.mp3";
                 default:
-                    return "jazz.mp3";
+                    return "forest.mp3";
             }
         }
 
@@ -607,6 +603,46 @@ namespace Pomodoro_App
             var graphClient = new GraphServiceClient(authProvider, MSGraphURL);
 
             return await Task.FromResult(graphClient);
+        }
+
+        private void changeQuote_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int randomNumber = random.Next(0, 13);
+            Quote currentQuote = _quotes[randomNumber];
+            author.Text = currentQuote.Author;
+            author.SelectionAlignment = HorizontalAlignment.Center;
+            quote.Text = currentQuote.QuoteText;
+            quote.SelectionAlignment = HorizontalAlignment.Center;
+        }
+
+        private void spotifyBtn_Click(object sender, EventArgs e)
+        {
+            string currentUser = Environment.UserName;
+            string[] possiblePaths = {
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Spotify\Spotify.exe",
+            Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Spotify\Spotify.exe",
+            Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + @"\Spotify\Spotify.exe",
+            $@"C:\Users\{currentUser}\AppData\Roaming\Spotify\Spotify.exe",
+            $@"C:\Users\{currentUser}\AppData\Local\Microsoft\WindowsApps\Spotify.exe"
+
+        };
+        foreach (string possiblePath in possiblePaths)
+        {
+            if (File.Exists(possiblePath))
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(possiblePath);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    errorLabel.Text = ex.Message;
+                }
+            }
+        }
+            errorLabel.Text = "Spotify doesn't exist";
         }
     }
     #endregion

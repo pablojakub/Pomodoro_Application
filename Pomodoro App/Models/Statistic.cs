@@ -14,6 +14,7 @@ namespace Pomodoro_App.Models
     {
         public DateTime Date { get; set; }
         public int Minutes { get; set; }
+        private static string _fileName => "statistics.json";
         public void ReadStatistic()
         {
             List<Statistic> statistics;
@@ -33,13 +34,14 @@ namespace Pomodoro_App.Models
 
         private static void ReadFile(out List<Statistic> statistics, bool create = false)
         {
-            var path = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "statistis.json");
+            var path = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, _fileName);
             if (File.Exists(path))
             {
                 var reader = new StreamReader(path);
                 var json = reader.ReadToEnd();
                 statistics = JsonConvert.DeserializeObject<List<Statistic>>(json);
                 reader.Close();
+                return;
             }
 
             statistics = new List<Statistic>() { 
@@ -63,7 +65,7 @@ namespace Pomodoro_App.Models
             } 
             else
             {
-                return $"You have {(Minutes / 60)} hours and {Minutes % 60} minutes today. " +
+                return $"You have {(Minutes / 60)} hours and {Minutes % 60} minutes focused time today. " +
                     $"Congratulations!";
             }
         }
@@ -74,7 +76,7 @@ namespace Pomodoro_App.Models
             Minutes = seconds / 60;
 
             List<Statistic> statistics;
-            var path = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "statistics.json");
+            var path = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, _fileName);
             ReadFile(out statistics);
             Statistic statisticToUpdate = statistics.Find(s => s.Date == DateTime.Today.Date);
             if (statisticToUpdate.Date == DateTime.MinValue)
@@ -82,7 +84,9 @@ namespace Pomodoro_App.Models
                 statistics.Add(this);
             } else
             {
-                statisticToUpdate = this;
+                int index = statistics.FindIndex(stat => stat.Date == DateTime.Today.Date);
+                Minutes += statisticToUpdate.Minutes;
+                statistics[index] = this;
             }
             string updatedJsonData = JsonConvert.SerializeObject(statistics, Formatting.Indented);
             File.WriteAllText(path, updatedJsonData);

@@ -77,6 +77,9 @@
             this.sendToPRStatus = new System.Windows.Forms.Label();
             this.statistic = new System.Windows.Forms.RichTextBox();
             this.author = new System.Windows.Forms.RichTextBox();
+            this.changeQuote = new System.Windows.Forms.Button();
+            this.spotifyBtn = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbCounter
@@ -261,21 +264,20 @@
             // 
             this.musicLabel.AutoSize = true;
             this.musicLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic);
-            this.musicLabel.Location = new System.Drawing.Point(349, 477);
+            this.musicLabel.Location = new System.Drawing.Point(349, 514);
             this.musicLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.musicLabel.Name = "musicLabel";
-            this.musicLabel.Size = new System.Drawing.Size(44, 17);
+            this.musicLabel.Size = new System.Drawing.Size(101, 17);
             this.musicLabel.TabIndex = 15;
-            this.musicLabel.Text = "Music";
+            this.musicLabel.Text = "Nature sounds";
             // 
             // musicSelect
             // 
             this.musicSelect.FormattingEnabled = true;
             this.musicSelect.Items.AddRange(new object[] {
-            "Jazz",
-            "Lo-Fi",
-            "Chill"});
-            this.musicSelect.Location = new System.Drawing.Point(352, 510);
+            "Forest",
+            "Ocean"});
+            this.musicSelect.Location = new System.Drawing.Point(351, 540);
             this.musicSelect.Margin = new System.Windows.Forms.Padding(2);
             this.musicSelect.Name = "musicSelect";
             this.musicSelect.Size = new System.Drawing.Size(170, 21);
@@ -290,7 +292,7 @@
             this.musicBtn_start.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Coral;
             this.musicBtn_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.musicBtn_start.ForeColor = System.Drawing.Color.White;
-            this.musicBtn_start.Location = new System.Drawing.Point(352, 540);
+            this.musicBtn_start.Location = new System.Drawing.Point(351, 579);
             this.musicBtn_start.Margin = new System.Windows.Forms.Padding(2);
             this.musicBtn_start.Name = "musicBtn_start";
             this.musicBtn_start.Size = new System.Drawing.Size(77, 38);
@@ -304,7 +306,7 @@
             this.musicBtn_stop.BackColor = System.Drawing.Color.Coral;
             this.musicBtn_stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.musicBtn_stop.ForeColor = System.Drawing.Color.White;
-            this.musicBtn_stop.Location = new System.Drawing.Point(444, 540);
+            this.musicBtn_stop.Location = new System.Drawing.Point(444, 579);
             this.musicBtn_stop.Margin = new System.Windows.Forms.Padding(2);
             this.musicBtn_stop.Name = "musicBtn_stop";
             this.musicBtn_stop.Size = new System.Drawing.Size(77, 38);
@@ -316,7 +318,7 @@
             // facebook_checkbox
             // 
             this.facebook_checkbox.AutoSize = true;
-            this.facebook_checkbox.Location = new System.Drawing.Point(31, 514);
+            this.facebook_checkbox.Location = new System.Drawing.Point(37, 532);
             this.facebook_checkbox.Margin = new System.Windows.Forms.Padding(2);
             this.facebook_checkbox.Name = "facebook_checkbox";
             this.facebook_checkbox.Size = new System.Drawing.Size(74, 17);
@@ -328,7 +330,7 @@
             // instagram_checkbox
             // 
             this.instagram_checkbox.AutoSize = true;
-            this.instagram_checkbox.Location = new System.Drawing.Point(110, 514);
+            this.instagram_checkbox.Location = new System.Drawing.Point(116, 532);
             this.instagram_checkbox.Margin = new System.Windows.Forms.Padding(2);
             this.instagram_checkbox.Name = "instagram_checkbox";
             this.instagram_checkbox.Size = new System.Drawing.Size(72, 17);
@@ -340,7 +342,7 @@
             // wykop_checkbox
             // 
             this.wykop_checkbox.AutoSize = true;
-            this.wykop_checkbox.Location = new System.Drawing.Point(183, 514);
+            this.wykop_checkbox.Location = new System.Drawing.Point(189, 532);
             this.wykop_checkbox.Margin = new System.Windows.Forms.Padding(2);
             this.wykop_checkbox.Name = "wykop_checkbox";
             this.wykop_checkbox.Size = new System.Drawing.Size(60, 17);
@@ -352,7 +354,7 @@
             // youtube_checkbox
             // 
             this.youtube_checkbox.AutoSize = true;
-            this.youtube_checkbox.Location = new System.Drawing.Point(244, 514);
+            this.youtube_checkbox.Location = new System.Drawing.Point(250, 532);
             this.youtube_checkbox.Margin = new System.Windows.Forms.Padding(2);
             this.youtube_checkbox.Name = "youtube_checkbox";
             this.youtube_checkbox.Size = new System.Drawing.Size(66, 17);
@@ -367,7 +369,7 @@
             this.blockWebsites_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.blockWebsites_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.blockWebsites_btn.ForeColor = System.Drawing.Color.White;
-            this.blockWebsites_btn.Location = new System.Drawing.Point(31, 546);
+            this.blockWebsites_btn.Location = new System.Drawing.Point(37, 564);
             this.blockWebsites_btn.Margin = new System.Windows.Forms.Padding(2);
             this.blockWebsites_btn.Name = "blockWebsites_btn";
             this.blockWebsites_btn.Size = new System.Drawing.Size(77, 32);
@@ -380,7 +382,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic);
-            this.label4.Location = new System.Drawing.Point(31, 477);
+            this.label4.Location = new System.Drawing.Point(34, 486);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(240, 17);
@@ -391,7 +393,7 @@
             // 
             this.chatGPT_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
             this.chatGPT_btn.ForeColor = System.Drawing.Color.Coral;
-            this.chatGPT_btn.Location = new System.Drawing.Point(31, 622);
+            this.chatGPT_btn.Location = new System.Drawing.Point(31, 645);
             this.chatGPT_btn.Margin = new System.Windows.Forms.Padding(2);
             this.chatGPT_btn.Name = "chatGPT_btn";
             this.chatGPT_btn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -430,7 +432,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Script MT Bold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(710, 27);
+            this.label6.Location = new System.Drawing.Point(711, 36);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 58);
@@ -442,12 +444,12 @@
             this.quote.BackColor = System.Drawing.Color.Gainsboro;
             this.quote.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.quote.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quote.Location = new System.Drawing.Point(614, 200);
+            this.quote.Location = new System.Drawing.Point(650, 239);
             this.quote.Margin = new System.Windows.Forms.Padding(2);
             this.quote.Name = "quote";
-            this.quote.Size = new System.Drawing.Size(232, 106);
+            this.quote.Size = new System.Drawing.Size(179, 27);
             this.quote.TabIndex = 33;
-            this.quote.Text = "";
+            this.quote.Text = "Testujemy testujemy";
             // 
             // contextMenuStrip1
             // 
@@ -638,7 +640,6 @@
             // 
             // statistic
             // 
-            this.statistic.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.statistic.BackColor = System.Drawing.Color.Gainsboro;
             this.statistic.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.statistic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -651,17 +652,61 @@
             // 
             // author
             // 
-            this.author.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.author.BackColor = System.Drawing.Color.Gainsboro;
             this.author.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.author.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.author.Location = new System.Drawing.Point(604, 83);
+            this.author.Location = new System.Drawing.Point(604, 96);
             this.author.Margin = new System.Windows.Forms.Padding(2);
             this.author.Name = "author";
             this.author.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.author.Size = new System.Drawing.Size(263, 119);
             this.author.TabIndex = 51;
-            this.author.Text = "";
+            this.author.Text = "Testujemy testujemy testujemy";
+            // 
+            // changeQuote
+            // 
+            this.changeQuote.BackColor = System.Drawing.Color.Gainsboro;
+            this.changeQuote.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.changeQuote.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.changeQuote.Location = new System.Drawing.Point(723, 278);
+            this.changeQuote.Margin = new System.Windows.Forms.Padding(0);
+            this.changeQuote.Name = "changeQuote";
+            this.changeQuote.Size = new System.Drawing.Size(34, 35);
+            this.changeQuote.TabIndex = 52;
+            this.changeQuote.Text = "🔄️";
+            this.changeQuote.UseVisualStyleBackColor = false;
+            this.changeQuote.Click += new System.EventHandler(this.changeQuote_Click);
+            // 
+            // spotifyBtn
+            // 
+            this.spotifyBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(215)))), ((int)(((byte)(95)))));
+            this.spotifyBtn.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
+            this.spotifyBtn.FlatAppearance.BorderSize = 5;
+            this.spotifyBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Coral;
+            this.spotifyBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Coral;
+            this.spotifyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.spotifyBtn.ForeColor = System.Drawing.Color.White;
+            this.spotifyBtn.Location = new System.Drawing.Point(352, 637);
+            this.spotifyBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.spotifyBtn.Name = "spotifyBtn";
+            this.spotifyBtn.Size = new System.Drawing.Size(169, 38);
+            this.spotifyBtn.TabIndex = 53;
+            this.spotifyBtn.Text = "Open Spotify";
+            this.spotifyBtn.UseVisualStyleBackColor = false;
+            this.spotifyBtn.Click += new System.EventHandler(this.spotifyBtn_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.Location = new System.Drawing.Point(347, 477);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 26);
+            this.label9.TabIndex = 54;
+            this.label9.Text = "Music:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 
@@ -669,6 +714,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(968, 792);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.spotifyBtn);
+            this.Controls.Add(this.changeQuote);
             this.Controls.Add(this.author);
             this.Controls.Add(this.statistic);
             this.Controls.Add(this.sendToPRStatus);
@@ -714,6 +762,7 @@
             this.Controls.Add(this.counter);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.lbCounter);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
@@ -773,6 +822,9 @@
         private System.Windows.Forms.Label sendToPRStatus;
         private System.Windows.Forms.RichTextBox statistic;
         private System.Windows.Forms.RichTextBox author;
+        private System.Windows.Forms.Button changeQuote;
+        private System.Windows.Forms.Button spotifyBtn;
+        private System.Windows.Forms.Label label9;
     }
 }
 
