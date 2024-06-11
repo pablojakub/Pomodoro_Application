@@ -80,6 +80,15 @@
             this.changeQuote = new System.Windows.Forms.Button();
             this.spotifyBtn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.taskInput = new System.Windows.Forms.TextBox();
+            this.addTaskBtn = new System.Windows.Forms.Button();
+            this.taskNumber1 = new System.Windows.Forms.Label();
+            this.taskNumber2 = new System.Windows.Forms.Label();
+            this.taskNumber3 = new System.Windows.Forms.Label();
+            this.task1 = new System.Windows.Forms.RichTextBox();
+            this.task2 = new System.Windows.Forms.RichTextBox();
+            this.task3 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // lbCounter
@@ -264,7 +273,7 @@
             // 
             this.musicLabel.AutoSize = true;
             this.musicLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic);
-            this.musicLabel.Location = new System.Drawing.Point(349, 514);
+            this.musicLabel.Location = new System.Drawing.Point(349, 515);
             this.musicLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.musicLabel.Name = "musicLabel";
             this.musicLabel.Size = new System.Drawing.Size(101, 17);
@@ -277,7 +286,7 @@
             this.musicSelect.Items.AddRange(new object[] {
             "Forest",
             "Ocean"});
-            this.musicSelect.Location = new System.Drawing.Point(351, 540);
+            this.musicSelect.Location = new System.Drawing.Point(351, 541);
             this.musicSelect.Margin = new System.Windows.Forms.Padding(2);
             this.musicSelect.Name = "musicSelect";
             this.musicSelect.Size = new System.Drawing.Size(170, 21);
@@ -292,7 +301,7 @@
             this.musicBtn_start.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Coral;
             this.musicBtn_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.musicBtn_start.ForeColor = System.Drawing.Color.White;
-            this.musicBtn_start.Location = new System.Drawing.Point(351, 579);
+            this.musicBtn_start.Location = new System.Drawing.Point(351, 580);
             this.musicBtn_start.Margin = new System.Windows.Forms.Padding(2);
             this.musicBtn_start.Name = "musicBtn_start";
             this.musicBtn_start.Size = new System.Drawing.Size(77, 38);
@@ -306,7 +315,7 @@
             this.musicBtn_stop.BackColor = System.Drawing.Color.Coral;
             this.musicBtn_stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.musicBtn_stop.ForeColor = System.Drawing.Color.White;
-            this.musicBtn_stop.Location = new System.Drawing.Point(444, 579);
+            this.musicBtn_stop.Location = new System.Drawing.Point(444, 580);
             this.musicBtn_stop.Margin = new System.Windows.Forms.Padding(2);
             this.musicBtn_stop.Name = "musicBtn_stop";
             this.musicBtn_stop.Size = new System.Drawing.Size(77, 38);
@@ -318,7 +327,7 @@
             // facebook_checkbox
             // 
             this.facebook_checkbox.AutoSize = true;
-            this.facebook_checkbox.Location = new System.Drawing.Point(37, 532);
+            this.facebook_checkbox.Location = new System.Drawing.Point(37, 533);
             this.facebook_checkbox.Margin = new System.Windows.Forms.Padding(2);
             this.facebook_checkbox.Name = "facebook_checkbox";
             this.facebook_checkbox.Size = new System.Drawing.Size(74, 17);
@@ -330,7 +339,7 @@
             // instagram_checkbox
             // 
             this.instagram_checkbox.AutoSize = true;
-            this.instagram_checkbox.Location = new System.Drawing.Point(116, 532);
+            this.instagram_checkbox.Location = new System.Drawing.Point(116, 533);
             this.instagram_checkbox.Margin = new System.Windows.Forms.Padding(2);
             this.instagram_checkbox.Name = "instagram_checkbox";
             this.instagram_checkbox.Size = new System.Drawing.Size(72, 17);
@@ -342,7 +351,7 @@
             // wykop_checkbox
             // 
             this.wykop_checkbox.AutoSize = true;
-            this.wykop_checkbox.Location = new System.Drawing.Point(189, 532);
+            this.wykop_checkbox.Location = new System.Drawing.Point(189, 533);
             this.wykop_checkbox.Margin = new System.Windows.Forms.Padding(2);
             this.wykop_checkbox.Name = "wykop_checkbox";
             this.wykop_checkbox.Size = new System.Drawing.Size(60, 17);
@@ -354,7 +363,7 @@
             // youtube_checkbox
             // 
             this.youtube_checkbox.AutoSize = true;
-            this.youtube_checkbox.Location = new System.Drawing.Point(250, 532);
+            this.youtube_checkbox.Location = new System.Drawing.Point(250, 533);
             this.youtube_checkbox.Margin = new System.Windows.Forms.Padding(2);
             this.youtube_checkbox.Name = "youtube_checkbox";
             this.youtube_checkbox.Size = new System.Drawing.Size(66, 17);
@@ -369,7 +378,7 @@
             this.blockWebsites_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.blockWebsites_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.blockWebsites_btn.ForeColor = System.Drawing.Color.White;
-            this.blockWebsites_btn.Location = new System.Drawing.Point(37, 564);
+            this.blockWebsites_btn.Location = new System.Drawing.Point(37, 565);
             this.blockWebsites_btn.Margin = new System.Windows.Forms.Padding(2);
             this.blockWebsites_btn.Name = "blockWebsites_btn";
             this.blockWebsites_btn.Size = new System.Drawing.Size(77, 32);
@@ -382,7 +391,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic);
-            this.label4.Location = new System.Drawing.Point(34, 486);
+            this.label4.Location = new System.Drawing.Point(34, 487);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(240, 17);
@@ -393,7 +402,7 @@
             // 
             this.chatGPT_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
             this.chatGPT_btn.ForeColor = System.Drawing.Color.Coral;
-            this.chatGPT_btn.Location = new System.Drawing.Point(31, 645);
+            this.chatGPT_btn.Location = new System.Drawing.Point(31, 646);
             this.chatGPT_btn.Margin = new System.Windows.Forms.Padding(2);
             this.chatGPT_btn.Name = "chatGPT_btn";
             this.chatGPT_btn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -686,7 +695,7 @@
             this.spotifyBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Coral;
             this.spotifyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.spotifyBtn.ForeColor = System.Drawing.Color.White;
-            this.spotifyBtn.Location = new System.Drawing.Point(352, 637);
+            this.spotifyBtn.Location = new System.Drawing.Point(352, 638);
             this.spotifyBtn.Margin = new System.Windows.Forms.Padding(2);
             this.spotifyBtn.Name = "spotifyBtn";
             this.spotifyBtn.Size = new System.Drawing.Size(169, 38);
@@ -700,7 +709,7 @@
             this.label9.AutoSize = true;
             this.label9.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.Location = new System.Drawing.Point(347, 477);
+            this.label9.Location = new System.Drawing.Point(347, 478);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(81, 26);
@@ -708,12 +717,147 @@
             this.label9.Text = "Music:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.Location = new System.Drawing.Point(231, 714);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(78, 26);
+            this.label10.TabIndex = 55;
+            this.label10.Text = "To do:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // taskInput
+            // 
+            this.taskInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.taskInput.Location = new System.Drawing.Point(37, 751);
+            this.taskInput.Margin = new System.Windows.Forms.Padding(2);
+            this.taskInput.Name = "taskInput";
+            this.taskInput.Size = new System.Drawing.Size(508, 22);
+            this.taskInput.TabIndex = 56;
+            this.taskInput.Text = "Task name";
+            this.taskInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.taskInput_KeyPress);
+            // 
+            // addTaskBtn
+            // 
+            this.addTaskBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(215)))), ((int)(((byte)(95)))));
+            this.addTaskBtn.FlatAppearance.BorderColor = System.Drawing.Color.Coral;
+            this.addTaskBtn.FlatAppearance.BorderSize = 5;
+            this.addTaskBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Coral;
+            this.addTaskBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Coral;
+            this.addTaskBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.addTaskBtn.ForeColor = System.Drawing.Color.White;
+            this.addTaskBtn.Location = new System.Drawing.Point(192, 902);
+            this.addTaskBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.addTaskBtn.Name = "addTaskBtn";
+            this.addTaskBtn.Size = new System.Drawing.Size(169, 38);
+            this.addTaskBtn.TabIndex = 57;
+            this.addTaskBtn.Text = "Add task";
+            this.addTaskBtn.UseVisualStyleBackColor = false;
+            this.addTaskBtn.Click += new System.EventHandler(this.addTaskBtn_Click);
+            // 
+            // taskNumber1
+            // 
+            this.taskNumber1.AutoSize = true;
+            this.taskNumber1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic);
+            this.taskNumber1.Location = new System.Drawing.Point(34, 794);
+            this.taskNumber1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.taskNumber1.Name = "taskNumber1";
+            this.taskNumber1.Size = new System.Drawing.Size(21, 17);
+            this.taskNumber1.TabIndex = 58;
+            this.taskNumber1.Text = "1)";
+            this.taskNumber1.Visible = false;
+            // 
+            // taskNumber2
+            // 
+            this.taskNumber2.AutoSize = true;
+            this.taskNumber2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic);
+            this.taskNumber2.Location = new System.Drawing.Point(34, 829);
+            this.taskNumber2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.taskNumber2.Name = "taskNumber2";
+            this.taskNumber2.Size = new System.Drawing.Size(21, 17);
+            this.taskNumber2.TabIndex = 59;
+            this.taskNumber2.Text = "2)";
+            this.taskNumber2.Visible = false;
+            // 
+            // taskNumber3
+            // 
+            this.taskNumber3.AutoSize = true;
+            this.taskNumber3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic);
+            this.taskNumber3.Location = new System.Drawing.Point(34, 863);
+            this.taskNumber3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.taskNumber3.Name = "taskNumber3";
+            this.taskNumber3.Size = new System.Drawing.Size(21, 17);
+            this.taskNumber3.TabIndex = 60;
+            this.taskNumber3.Text = "3)";
+            this.taskNumber3.Visible = false;
+            // 
+            // task1
+            // 
+            this.task1.BackColor = System.Drawing.Color.Gainsboro;
+            this.task1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.task1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.task1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.task1.Location = new System.Drawing.Point(59, 793);
+            this.task1.Margin = new System.Windows.Forms.Padding(2);
+            this.task1.Name = "task1";
+            this.task1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.task1.Size = new System.Drawing.Size(480, 22);
+            this.task1.TabIndex = 61;
+            this.task1.Text = "Testujemy testujemy testujemy";
+            this.task1.Visible = false;
+            this.task1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.task1_TextChanged);
+            // 
+            // task2
+            // 
+            this.task2.BackColor = System.Drawing.Color.Gainsboro;
+            this.task2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.task2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.task2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.task2.Location = new System.Drawing.Point(59, 829);
+            this.task2.Margin = new System.Windows.Forms.Padding(2);
+            this.task2.Name = "task2";
+            this.task2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.task2.Size = new System.Drawing.Size(480, 22);
+            this.task2.TabIndex = 62;
+            this.task2.Text = "Testujemy testujemy testujemy";
+            this.task2.Visible = false;
+            this.task2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.task2_TextChanged);
+            // 
+            // task3
+            // 
+            this.task3.BackColor = System.Drawing.Color.Gainsboro;
+            this.task3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.task3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.task3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.task3.Location = new System.Drawing.Point(59, 862);
+            this.task3.Margin = new System.Windows.Forms.Padding(2);
+            this.task3.Name = "task3";
+            this.task3.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.task3.Size = new System.Drawing.Size(480, 22);
+            this.task3.TabIndex = 63;
+            this.task3.Text = "Testujemy testujemy testujemy";
+            this.task3.Visible = false;
+            this.task3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.task3_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(968, 792);
+            this.ClientSize = new System.Drawing.Size(968, 951);
+            this.Controls.Add(this.task3);
+            this.Controls.Add(this.task2);
+            this.Controls.Add(this.task1);
+            this.Controls.Add(this.taskNumber3);
+            this.Controls.Add(this.taskNumber2);
+            this.Controls.Add(this.taskNumber1);
+            this.Controls.Add(this.addTaskBtn);
+            this.Controls.Add(this.taskInput);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.spotifyBtn);
             this.Controls.Add(this.changeQuote);
@@ -825,6 +969,15 @@
         private System.Windows.Forms.Button changeQuote;
         private System.Windows.Forms.Button spotifyBtn;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox taskInput;
+        private System.Windows.Forms.Button addTaskBtn;
+        private System.Windows.Forms.Label taskNumber1;
+        private System.Windows.Forms.Label taskNumber2;
+        private System.Windows.Forms.Label taskNumber3;
+        private System.Windows.Forms.RichTextBox task1;
+        private System.Windows.Forms.RichTextBox task2;
+        private System.Windows.Forms.RichTextBox task3;
     }
 }
 

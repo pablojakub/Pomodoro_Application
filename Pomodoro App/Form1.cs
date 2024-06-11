@@ -39,6 +39,7 @@ namespace Pomodoro_App
         private JiraIssue selectedIssue = null;
         private Statistic _statistic;
         private List<Quote> _quotes = new List<Quote>();
+        private List<ToDoItem> tasks = new List<ToDoItem>();
 
         [DllImport("user32")]
         public static extern void LockWorkStation();
@@ -91,7 +92,7 @@ namespace Pomodoro_App
         private void Form1_Resize( object sender, EventArgs e)
         {
             var form = new Form2(seconds);
-            if (WindowState == FormWindowState.Minimized && seconds > 0 && timerCheckbox.Checked)
+            if ((WindowState == FormWindowState.Minimized && seconds > 0 && timerCheckbox.Checked) || tasks.Any(t => t.Done == false))
             {
                 // Do some stuff
                 form.ShowDialog();
@@ -643,6 +644,111 @@ namespace Pomodoro_App
             }
         }
             errorLabel.Text = "Spotify doesn't exist";
+        }
+
+        private void addTaskBtn_Click(object sender, EventArgs e)
+        {
+            addToDoItem();
+        }
+
+        private void task1_TextChanged(object sender, MouseEventArgs e)
+        {
+            var firstToDo = tasks[0];
+            if (firstToDo.Done)
+            {
+                firstToDo.Done = false;
+                tasks[0] = firstToDo;
+                task1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Italic, GraphicsUnit.Point, ((byte)(0)));
+            }
+            else
+            {
+                firstToDo.Done = true;
+                tasks[0] = firstToDo;
+                task1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Italic | FontStyle.Strikeout, GraphicsUnit.Point, (byte)(0));
+            }
+        }
+
+        private void task2_TextChanged(object sender, MouseEventArgs e)
+        {
+            var secondTodo = tasks[1];
+            if (secondTodo.Done)
+            {
+                secondTodo.Done = false;
+                tasks[1] = secondTodo;
+                task2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Italic, GraphicsUnit.Point, ((byte)(0)));
+            }
+            else
+            {
+                secondTodo.Done = true;
+                tasks[1] = secondTodo;
+                task2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Italic | FontStyle.Strikeout, GraphicsUnit.Point, (byte)(0));
+            }
+        }
+
+        private void task3_TextChanged(object sender, MouseEventArgs e)
+        {
+            var thirdToDo = tasks[2];
+            if (thirdToDo.Done)
+            {
+                thirdToDo.Done = false;
+                tasks[2] = thirdToDo;
+                task3.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Italic, GraphicsUnit.Point, ((byte)(0)));
+            }
+            else
+            {
+                thirdToDo.Done = true;
+                tasks[2] = thirdToDo;
+                task3.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Italic | FontStyle.Strikeout, GraphicsUnit.Point, (byte)(0));
+            }
+        }
+
+        private void taskInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                addToDoItem();
+            }
+        }
+
+        private void addToDoItem()
+        {
+            if (tasks.Count == 3 || string.IsNullOrEmpty(taskInput.Text))
+            {
+                return;
+            }
+
+            var taskName = taskInput.Text;
+            tasks.Add(new ToDoItem()
+            {
+                Name = taskName,
+                Done = false,
+            });
+
+            if (tasks.Count == 1)
+            {
+                taskNumber1.Visible = true;
+                task1.Visible = true;
+                task1.Text = tasks[0].Name;
+                task1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Italic, GraphicsUnit.Point, ((byte)(0)));
+
+            }
+
+            if (tasks.Count == 2)
+            {
+                taskNumber2.Visible = true;
+                task2.Visible = true;
+                task2.Text = tasks[1].Name;
+                task2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Italic, GraphicsUnit.Point, ((byte)(0)));
+            }
+
+            if (tasks.Count == 3)
+            {
+                taskNumber3.Visible = true;
+                task3.Visible = true;
+                task3.Text = tasks[2].Name;
+                task3.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Italic, GraphicsUnit.Point, ((byte)(0)));
+            }
+            taskInput.Text = "";
         }
     }
     #endregion

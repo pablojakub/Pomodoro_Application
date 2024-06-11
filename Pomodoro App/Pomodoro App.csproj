@@ -72,6 +72,7 @@
     <Compile Include="JiraHelper.cs" />
     <Compile Include="Models\Quote.cs" />
     <Compile Include="Models\Statistic.cs" />
+    <Compile Include="Models\ToDoItem.cs" />
     <Compile Include="TokenProviders.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
